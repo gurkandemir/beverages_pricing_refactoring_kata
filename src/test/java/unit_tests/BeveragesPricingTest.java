@@ -28,25 +28,30 @@ public class BeveragesPricingTest {
 
     @Test
     public void computes_tea_with_milk_price() {
-        Tea teaWithMilk = new TeaWithMilk();
+        Tea tea = new Tea();
+        Beverage teaWithMilk = new MilkApplier(tea);
         assertThat(teaWithMilk.price(), is(closeTo(1.60, 0.001)));
     }
 
     @Test
     public void computes_coffee_with_milk_price() {
-        Coffee coffeeWithMilk = new CoffeeWithMilk();
+        Coffee coffee = new Coffee();
+        Beverage coffeeWithMilk = new MilkApplier(coffee);
         assertThat(coffeeWithMilk.price(), is(closeTo(1.30, 0.001)));
     }
 
     @Test
     public void computes_coffee_with_milk_and_cream_price() {
-        Coffee coffeeWithMilkAndCream = new CoffeeWithMilkAndCream();
+        Coffee coffee = new Coffee();
+        Beverage coffeeWithMilk = new MilkApplier(coffee);
+        Beverage coffeeWithMilkAndCream = new CreamApplier(coffeeWithMilk);
         assertThat(coffeeWithMilkAndCream.price(), is(closeTo(1.45, 0.001)));
     }
 
     @Test
     public void computes_hot_chocolate_with_cream_price() {
-        HotChocolateWithCream hotChocolateWithCream = new HotChocolateWithCream();
+        HotChocolate hotChocolate = new HotChocolate();
+        Beverage hotChocolateWithCream = new CreamApplier(hotChocolate);
         assertThat(hotChocolateWithCream.price(),  is(closeTo(1.60, 0.001)));
     }
 }
